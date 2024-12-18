@@ -8,17 +8,19 @@ from config import DevelopmentConfig
 
 def create_app(config_class=DevelopmentConfig):
     app = Flask(__name__)
+    # Configure the app using the provided config class
     app.config.from_object(config_class)
 
-    # Initialize extensions
+    # Initialize the database with the Flask app
     db.init_app(app)
 
-    # Register blueprints
+    # Register blueprints for modular routing
     app.register_blueprint(product_bp, url_prefix="/products")
     app.register_blueprint(customer_bp, url_prefix="/customers")
     app.register_blueprint(order_bp, url_prefix="/orders")
 
+    # Create all database tables (if not already created)
     with app.app_context():
-        db.create_all()  # Automatically create tables
+        db.create_all()
 
     return app
