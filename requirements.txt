@@ -1,0 +1,7 @@
+Flask
+Flask-SQLAlchemy
+pytest
+pytest-flask
+flask-testing
+psycopg2-binary
+gunicorn
